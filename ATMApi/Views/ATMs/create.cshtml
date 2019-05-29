@@ -1,0 +1,76 @@
+﻿@model ATMApi.Models.ATM
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>create</h2>
+<form method="post" id="create" action="/atms/create">
+    <div class="form-horizontal">
+        <h4>ATM</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Name</label>
+            <div class="col-md-10">
+                <input type="text" name="name" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Address</label>
+            <div class="col-md-10">
+                <input type="text" name="address" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Longtude</label>
+            <div class="col-md-10">
+                <input type="text" name="longtude" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Latitude</label>
+            <div class="col-md-10">
+                <input type="text" name="latitude" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Balance</label>
+            <div class="col-md-10">
+                <input type="text" name="balance" class="form-control" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Crowded</label>
+            <div class="col-md-10">
+                <select name="crowded" class="list-box tri-state">
+                    <option selected="selected">Not Set</option>
+                    <option value="true">Yes</option>
+                    <option value="false">NO</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Status</label>
+            <div class="col-md-10">
+                <select name="status" class="list-box tri-state">
+                    <option selected="selected">Not Set</option>
+                    <option value="true">Yes</option>
+                    <option value="false">NO</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a href="/atms/index">Back to List</a>
+</div>

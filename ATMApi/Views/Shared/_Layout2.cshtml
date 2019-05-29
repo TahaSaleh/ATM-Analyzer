@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATM Analyser</title>
+    <!-- Bootstrap Styles-->
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="~/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="~/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" id="atm" href="/atms/index"><b> ATM</b> </a>
+            </div>
+            <a href="/home/logout" class="btn btn-danger navbar-right " style="margin-right:20px;margin-top:10px">Logout</a>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a href="/banks/index" id="bank"><i class="fa fa-dashboard"></i> Banks</a>
+                    </li>
+                    <li>
+                        <a id="atm" href="/atms/index" ><i class="fa fa-desktop"></i> ATMS</a>
+                    </li>
+                    <li>
+                        <a href="/trunsactions/index" id="trun"><i class="fa fa-bar-chart-o"></i> Trunsaction</a>
+                    </li>
+                    <li>
+                        <a href="/users/index" id="user"><i class="fa fa-qrcode"></i> user</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                @RenderBody()
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="~/js/jquery-1.10.2.js"></script>
+    <!-- Bootstrap Js -->
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Js -->
+    <script src="~/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="~/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="~/js/morris/morris.js"></script>
+
+
+    <script src="~/js/easypiechart.js"></script>
+    <script src="~/js/easypiechart-data.js"></script>
+
+
+    <!-- Custom Js -->
+    <script src="~/js/custom-scripts.js"></script>
+    <!--ajax-->>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+</body>
+
+</html>

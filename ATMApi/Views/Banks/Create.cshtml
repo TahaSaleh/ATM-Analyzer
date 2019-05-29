@@ -1,0 +1,33 @@
+﻿@model ATMApi.Models.Bank
+
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<center><h2><b>Create</b></h2></center>
+<br /><br />
+<form method="post" action="/banks/create" id="create">
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" name="name" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <input class="btn btn-primary" type="submit" value="Save" />
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#create").submit(function () {
+            var token = localStorage.getItem("accessToken");
+            var formAction = $(this).attr('action');
+            $(this).attr('action', formAction + "?token=" + token);
+        });
+    });
+</script>
+

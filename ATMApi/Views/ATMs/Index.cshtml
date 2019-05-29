@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ATMApi.Models.ATM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div id="tt">
+    <center><h2>ATMS</h2></center>
+    <br><br>
+    <a href="/atm/create" class="btn btn-success">Create New</a>
+
+    <br><br>
+    <table class="table table-bordered table-hover table-striped ">
+        <thead class="bg-primary">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">
+                    Name
+                </th>
+                <th scope="col">
+                    Address
+                </th>
+                <th scope="col">
+                    Balance
+                </th>
+                <th scope="col">
+                    Crowded?
+                </th>
+                <th scope="col">
+                    Status?
+                </th>
+                <th scope="col">
+                    Trunsactions
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row">
+                        @item.id
+                    </th>
+                    <td scope="row">
+                        @item.name
+                    </td>
+                    <td scope="row">
+                        @item.address
+                    </td>
+                    <td scope="row">
+                        @item.balance
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.crowded)
+                    </td>
+                    <td scope="row">
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td scope="row">
+                        @item.T_N
+                    </td>
+                    <td scope="row">
+                        <a href="/atms/edite/@item.id" id="edite">Edite</a> |
+                        <a href="/atms/details/@item.id" id="details">Details</a>
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+
+</div>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ATMApi.Models.Trunsaction>
+
+@{
+    ViewBag.Title = "Trunsaction";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<center><h2>Trunsaction</h2></center>
+<br><br>
+
+<table class="table table-bordered table-hover">
+    <thead class="bg-primary">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+                Start Time
+            </th>
+            <th scope="col">
+                End Time
+            </th>
+            <th>
+                ATM Id
+            </th>
+            <th scope="col">
+                Withdrow
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.start_time)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.end_time)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.atm_id)
+                </td>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.withdrow)
+                </td>
+
+            </tr>
+        </tbody>
+    }
+
+</table>
+

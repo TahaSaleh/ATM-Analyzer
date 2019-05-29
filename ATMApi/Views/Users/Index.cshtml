@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ATMApi.Models.User>
+
+@{
+    ViewBag.Title = "user";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<center><h2><b>Users</b></h2></center>
+<br>
+<a href="/users/create" id="create" class="btn btn-success">Create New</a>
+<br>
+<br>
+<table class="table table-bordered table-hover">
+    <thead class="bg-primary">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.password)
+            </th>
+            <th>
+                Card Number
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.withdrow)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.credit_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.withdrow)
+                </td>
+                <td>
+                    @Html.ActionLink("Edite", "Edite", new { id = item.id }, new { id = "edite" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { id = "details" }) |
+                    <a onclick="warn(@item.id)">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+<script>
+    function warn(id) {
+        var r = confirm("Are you Sure of Deleting ?!");
+        if (r == true)
+            remove(id);
+    }
+    function remove(id) {
+        window.location.href = "/users/delete/" + id ;
+    }
+</script>

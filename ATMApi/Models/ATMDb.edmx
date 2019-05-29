@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ATMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ATM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="65" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="longtude" Type="varchar" MaxLength="50" />
+          <Property Name="latitude" Type="varchar" MaxLength="50" />
+          <Property Name="balance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="crowded" Type="bit" />
+          <Property Name="status" Type="bit" />
+          <Property Name="T_N" Type="int" />
+          <Property Name="bank_id" Type="int" />
+          <Property Name="T_N_last_hour" Type="int" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Trunsaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="withdrow" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="atm_id" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="credit_number" Type="varchar" MaxLength="25" />
+          <Property Name="phone" Type="varchar" MaxLength="25" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="withdrow" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bank_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_ATM_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="ATM" Type="Self.ATM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ATM">
+              <PropertyRef Name="bank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trunsaction_ATM">
+          <End Role="ATM" Type="Self.ATM" Multiplicity="0..1" />
+          <End Role="Trunsaction" Type="Self.Trunsaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATM">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Trunsaction">
+              <PropertyRef Name="atm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="bank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ATMModelStoreContainer">
+          <EntitySet Name="ATM" EntityType="Self.ATM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trunsaction" EntityType="Self.Trunsaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ATM_Bank" Association="Self.FK_ATM_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="ATM" EntitySet="ATM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trunsaction_ATM" Association="Self.FK_Trunsaction_ATM">
+            <End Role="ATM" EntitySet="ATM" />
+            <End Role="Trunsaction" EntitySet="Trunsaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Bank" Association="Self.FK_User_Bank">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ATMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ATM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="65" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="longtude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="balance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="crowded" Type="Boolean" />
+          <Property Name="status" Type="Boolean" />
+          <Property Name="T_N" Type="Int32" />
+          <Property Name="bank_id" Type="Int32" />
+          <Property Name="T_N_last_hour" Type="Int32" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_ATM_Bank" FromRole="ATM" ToRole="Bank" />
+          <NavigationProperty Name="Trunsactions" Relationship="Self.FK_Trunsaction_ATM" FromRole="ATM" ToRole="Trunsaction" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ATMs" Relationship="Self.FK_ATM_Bank" FromRole="Bank" ToRole="ATM" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Bank" FromRole="Bank" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Trunsaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Precision="3" />
+          <Property Name="withdrow" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="atm_id" Type="Int32" />
+          <NavigationProperty Name="ATM" Relationship="Self.FK_Trunsaction_ATM" FromRole="Trunsaction" ToRole="ATM" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="credit_number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="withdrow" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bank_id" Type="Int32" />
+          <NavigationProperty Name="Bank" Relationship="Self.FK_User_Bank" FromRole="User" ToRole="Bank" />
+        </EntityType>
+        <Association Name="FK_ATM_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="ATM" Type="Self.ATM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ATM">
+              <PropertyRef Name="bank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trunsaction_ATM">
+          <End Role="ATM" Type="Self.ATM" Multiplicity="0..1" />
+          <End Role="Trunsaction" Type="Self.Trunsaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ATM">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Trunsaction">
+              <PropertyRef Name="atm_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Bank">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="bank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ATMEntities" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="ATMs" EntityType="Self.ATM" />
+          <EntitySet Name="Banks" EntityType="Self.Bank" />
+          <EntitySet Name="Trunsactions" EntityType="Self.Trunsaction" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_ATM_Bank" Association="Self.FK_ATM_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="ATM" EntitySet="ATMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trunsaction_ATM" Association="Self.FK_Trunsaction_ATM">
+            <End Role="ATM" EntitySet="ATMs" />
+            <End Role="Trunsaction" EntitySet="Trunsactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Bank" Association="Self.FK_User_Bank">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ATMModelStoreContainer" CdmEntityContainer="ATMEntities">
+          <EntitySetMapping Name="ATMs">
+            <EntityTypeMapping TypeName="ATMModel.ATM">
+              <MappingFragment StoreEntitySet="ATM">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="longtude" ColumnName="longtude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="crowded" ColumnName="crowded" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="T_N" ColumnName="T_N" />
+                <ScalarProperty Name="bank_id" ColumnName="bank_id" />
+                <ScalarProperty Name="T_N_last_hour" ColumnName="T_N_last_hour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="ATMModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trunsactions">
+            <EntityTypeMapping TypeName="ATMModel.Trunsaction">
+              <MappingFragment StoreEntitySet="Trunsaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="withdrow" ColumnName="withdrow" />
+                <ScalarProperty Name="atm_id" ColumnName="atm_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ATMModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="credit_number" ColumnName="credit_number" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="withdrow" ColumnName="withdrow" />
+                <ScalarProperty Name="bank_id" ColumnName="bank_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

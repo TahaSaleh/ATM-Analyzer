@@ -1,0 +1,83 @@
+﻿@model ATMApi.Models.User
+
+@{
+    ViewBag.Title = "getUser";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h2>getUser</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.credit_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.credit_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.withdrow)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.withdrow)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bank.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bank.name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

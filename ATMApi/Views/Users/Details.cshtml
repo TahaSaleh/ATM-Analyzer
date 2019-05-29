@@ -1,0 +1,63 @@
+﻿@model ATMApi.Models.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<center><h2><b>Details</b></h2></center>
+<br />
+<div>
+    <center><h3><b>User @Model.id</b></h3></center>
+                <hr />
+                <form>
+
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Bank</label>
+                        <div class="col-sm-10">
+                            @Html.DropDownList("bank_id", ViewBag.banks as SelectList, "Select Bank....", htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="name" name="name" disabled value="@Model.name" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">User Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="user_name" name="user_name" disabled value="@Model.user_name" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Credit Number</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="credit_number" name="credit_number" disabled value="@Model.credit_number" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="phone" name="phone" disabled value="@Model.phone" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Address</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="address" name="address" disabled value="@Model.address" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Withdrow</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="withdrow" name="withdrow" disabled value="@Model.withdrow" />
+                        </div>
+                    </div>
+                </form>
+</div>
+<p>
+    @Html.ActionLink("Edite", "Edite", new { id = Model.id }, new { id = "edite" }) |
+    @Html.ActionLink("Back to List", "Index",  null,new { id = "user2" })
+</p>
+
